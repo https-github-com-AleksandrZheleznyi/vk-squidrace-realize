@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="ad.css" />
+    <link rel="stylesheet" href="Template/loader.style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="displayheight" content="31, 60, 90, 125, 250, 400, 600"/>
+
+    <title>SquidGame</title>
+    
+    <script src="scripts/extensions.js"></script>
+    <script src="scripts/common.js"></script>
+    <script src="Build/UnityLoader.js"></script>
+    <script src="Template/UnityProgress.js"></script>
+    <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+    
+    <script>
+      window.alert = console.log;
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Source.json", { onProgress: UnityProgress });
+    </script>
+
+  </head>
+  <body style="background-color: #0B0B0BFF;">
+    <div id="unityContainer" style="position: absolute; width: 100%; height: 100%; left: 0px;  top: 0px;"></div>
+    
+    
+    
+
+    <div id="loader">
+      <div id="loader-area">
+          <span id="loader-area__label" style="color: #FFE98FFF"></span>
+          <span id="loader-area__percent" style="color: #D9B303FF"></span>
+      </div>
+    </div>
+    <script src="vkgames/vkgames.sdk.js"></script>
+    <script>
+      IsMobilePlatform = UnityLoader.SystemInfo.mobile;
+    </script>
+  </body>
+</html>
