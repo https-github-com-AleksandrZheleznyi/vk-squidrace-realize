@@ -126,6 +126,17 @@ async function BridgeJoinGroup(request)
     }
 }
 
+async function BridgeAppAddToFavorites(request)
+{
+    try {
+        await vkBridge.send('VKWebAppAddToFavorites');
+        SendSuccessMessage(request);
+    } catch (e)
+    {
+        SendFailedMessage(request, JSON.parse(e));
+    }
+}
+
 function GetLanguageCode()
 {
     return navigator.language || navigator.userLanguage;
