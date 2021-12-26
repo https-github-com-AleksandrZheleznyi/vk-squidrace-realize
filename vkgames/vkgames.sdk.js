@@ -82,7 +82,7 @@ async function BridgeShowLeaderboard(request)
         var data = await vkBridge.send('VKWebAppShowLeaderBoardBox', { 'user_result': Number(request.jsonData) });
         SendSuccessMessage(request);
     } catch (e) {
-        SendFailedMessage(request, JSON.parse(e));
+        SendFailedMessage(request, e);
     }
 }
 
