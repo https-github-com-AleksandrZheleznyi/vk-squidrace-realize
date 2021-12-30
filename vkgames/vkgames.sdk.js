@@ -108,8 +108,9 @@ async function BridgeInviteFriend(request)
 
 async function BridgeSendPostOnWall(request)
 {
+    //<type><owner_id>_<media_id>
     try {
-        await vkBridge.send('VKWebAppShowWallPostBox', { 'message': request.jsonData });
+        await vkBridge.send('VKWebAppShowWallPostBox', JSON.parse(request.jsonData));
         SendSuccessMessage(request);
     } catch (e) {
         SendFailedMessage(request, JSON.parse(e));
