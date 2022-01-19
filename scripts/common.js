@@ -1,7 +1,7 @@
 var IsMobilePlatform = false;
 
 let cachedConfigFile = null;
-let configUrl = 'https://spgames.s3.ap-south-1.amazonaws.com/squid-race/vkgames/0.1/RemoteConfig.json';
+let configUrl = 'https://spgames.s3.ap-south-1.amazonaws.com/squid-race/vkgames/0.3/RemoteConfig.json';
 
 function LoadConfig(successCallback, errorCallback)
 {
@@ -78,3 +78,21 @@ function WebRequestToObject(reqeust)
     return JSON.parse(reqeust);
 }
 
+
+window.onfocus = function()
+{
+    BaseSendMessage('SPGameService', 'FocusMode', 1);
+};
+
+window.onblur = function()
+{
+    BaseSendMessage('SPGameService', 'FocusMode', 0);
+};
+
+function setElementByIdStyleType(id, type)
+{
+    var element = document.getElementById(id);
+    if(element == null) return;
+    if(element.style == null) return;
+    element.style.display=type;
+}
