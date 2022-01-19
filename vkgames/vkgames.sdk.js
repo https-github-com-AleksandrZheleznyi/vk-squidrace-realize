@@ -46,10 +46,9 @@ async function BridgeShowRewardVideoAd(request)
 
 function BridgeShowBannerAd(request)
 {
+    console.log('Show banner: '+request.jsonData);
     setElementByIdStyleType(request.jsonData, 'block');
     SendSuccessMessage(request);
-    // setElementByIdStyleType(banner._position, 'block');
-    // setElementByIdStyleType(banner._position, 'none');
 }
 
 function BridgeHideBannerAd(request)
