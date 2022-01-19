@@ -3,22 +3,20 @@ async function BridgeInitialize(request)
     try {
         await vkBridge.send('VKWebAppInit');
         SendSuccessMessage(request);
+        console.log('-Success init VKBridge SDK');
     } 
     catch (err) {
         SendFailedMessage(request, JSON.stringify(err));
+        console.log('-Failed init VKBridge SDK: '+JSON.stringify(err));
     }
 }
 
 // ADS 
-async function BridgeShowInterstitialAd(request)
+async function BridgeShowBannerAd(request, bannerId)
 {
-    // request.jsonData - bannerId: 'interstitial' or 'preloader'
-    if(request != null && request.jsonData == null)
-    {
-        request.jsonData = 'interstitial';
-    }
+    // bannerId: 'interstitial' or 'preloader'
     try {
-        var data = await vkBridge.send('VKWebAppShowNativeAds', { ad_format: request.jsonData });
+        var data = await vkBridge.send('VKWebAppShowNativeAds', { ad_format: bannerId });
         SendSuccessMessage(request);
         console.log('-Success show VKBridge Intestitial Ad! Data result: '+data.result);
     } catch (err) {
@@ -43,21 +41,6 @@ async function BridgeShowRewardVideoAd(request)
         console.log('-Failed receive reward');
     }
 }
-
-function BridgeShowBannerAd(request)
-{
-    setElementByIdStyleType(request.jsonData, 'block');
-    SendSuccessMessage(request);
-    // setElementByIdStyleType(banner._position, 'block');
-    // setElementByIdStyleType(banner._position, 'none');
-}
-
-function BridgeHideBannerAd(request)
-{
-    setElementByIdStyleType(request.jsonData, 'none');
-    SendSuccessMessage(request);
-}
-
 
 // Storage
 async function BridgeSetUserData(request)
@@ -99,7 +82,7 @@ async function BridgeShowLeaderboard(request)
         var data = await vkBridge.send('VKWebAppShowLeaderBoardBox', { 'user_result': Number(request.jsonData) });
         SendSuccessMessage(request);
     } catch (e) {
-        SendFailedMessage(request, JSON.parse(e));
+        SendFailedMessage(request, e);
     }
 }
 
@@ -125,6 +108,7 @@ async function BridgeInviteFriend(request)
 
 async function BridgeSendPostOnWall(request)
 {
+    //<type><owner_id>_<media_id>
     try {
         await vkBridge.send('VKWebAppShowWallPostBox', JSON.parse(request.jsonData));
         SendSuccessMessage(request);
