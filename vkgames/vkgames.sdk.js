@@ -53,6 +53,7 @@ function BridgeShowBannerAd(request)
 
 function BridgeHideBannerAd(request)
 {
+    console.log('Hide banner: '+request.jsonData);
     setElementByIdStyleType(request.jsonData, 'none');
     SendSuccessMessage(request);
 }
