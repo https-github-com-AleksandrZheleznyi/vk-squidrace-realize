@@ -129,7 +129,7 @@ async function BridgeSendPostOnWall(request)
         await vkBridge.send('VKWebAppShowWallPostBox', JSON.parse(request.jsonData));
         SendSuccessMessage(request);
     } catch (e) {
-        SendFailedMessage(request, JSON.parse(e));
+        SendFailedMessage(request, e);
     }
 }
 
